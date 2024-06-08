@@ -1,5 +1,6 @@
 import 'package:bai_tap_cuoi_ky/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../base/button.dart';
 import '../../../base/text_field.dart';
@@ -20,11 +21,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Đăng ký'),
+      ),
       body: Container(
         padding: const EdgeInsets.all(sp16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Lottie.asset(
+              'assets/jsons/welcome.json',
+            ),
             Form(
               key: key,
               child: Column(
