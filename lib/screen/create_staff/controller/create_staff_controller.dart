@@ -20,6 +20,10 @@ class CreateStaffController {
   late String avatar = '';
   String get getAvatar => avatar;
 
+  StaffEntity? staffEntity;
+  StaffEntity? get getStaffEntity => staffEntity;
+
+
 
 
   void onNameChanged(String value) {
@@ -46,4 +50,15 @@ class CreateStaffController {
       avatar: avatar,
     ));
   }
+
+  Future<void> update(int id) async {
+    await staffDao.updateStaff(StaffEntity(
+      id: id,
+      name: _name,
+      email: _email,
+      dateOfBirth: DateFormat('dd/MM/yyyy').format(dateOfBirt),
+      avatar: avatar,
+    ));
+  }
+
 }
