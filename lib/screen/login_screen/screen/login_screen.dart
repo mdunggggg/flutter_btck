@@ -2,6 +2,7 @@ import 'package:bai_tap_cuoi_ky/base/button.dart';
 import 'package:bai_tap_cuoi_ky/base/text_field.dart';
 import 'package:bai_tap_cuoi_ky/constants/colors.dart';
 import 'package:bai_tap_cuoi_ky/constants/spacing.dart';
+import 'package:bai_tap_cuoi_ky/screen/home/screen/home_screen.dart';
 import 'package:bai_tap_cuoi_ky/screen/register/screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -92,6 +93,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     final canLogin = await loginController.login();
     if (canLogin) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
