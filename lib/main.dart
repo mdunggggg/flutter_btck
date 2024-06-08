@@ -2,10 +2,12 @@ import 'package:bai_tap_cuoi_ky/screen/login_screen/screen/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'data/local/database/app_database.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AppDatabase.initDatabase();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
