@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311241170744",
+    "project_id": "flutter-btck",
+    "storage_bucket": "flutter-btck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311241170744:android:e80dca4a4b727dc233ebcd",
+        "android_client_info": {
+          "package_name": "com.flutter.btck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxkqWPWpBSaVFjpCL31rfxKAnT3pVypAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
