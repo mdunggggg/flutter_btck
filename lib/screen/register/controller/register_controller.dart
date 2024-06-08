@@ -1,21 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginController {
+class RegisterController {
   final firebaseAuth = FirebaseAuth.instance;
 
   String email = '';
   String password = '';
 
-  Future<bool> login() async {
+  Future<bool> register() async {
     try {
       print('email: $email');
       print('password: $password');
-      final uid = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      print('uid: $uid');
+      await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return true;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       print('error: $e');
       return false;
     }
   }
+
 }

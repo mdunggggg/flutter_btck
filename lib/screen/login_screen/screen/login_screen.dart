@@ -2,6 +2,7 @@ import 'package:bai_tap_cuoi_ky/base/button.dart';
 import 'package:bai_tap_cuoi_ky/base/text_field.dart';
 import 'package:bai_tap_cuoi_ky/constants/colors.dart';
 import 'package:bai_tap_cuoi_ky/constants/spacing.dart';
+import 'package:bai_tap_cuoi_ky/screen/register/screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/login_controller.dart';
@@ -16,67 +17,73 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final key = GlobalKey<FormState>();
   final loginController = LoginController();
+  final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Form(
-              key: key,
-              child: Column(
-                children: [
-                  AppInput(
-                    hintText: 'Email',
-                    label: 'Nhập email',
-                    validate: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng nhập email';
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      loginController.email = value;
-                    },
-                  ),
-                  gapHeight(sp16),
-                  AppInput(
-                    label: 'Nhập mật khẩu',
-                    hintText: 'Password',
-                    isPassword: true,
-                    validate: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng nhập mật khẩu';
-                      }
-                      return null;
-                    },
-                  ),
-                ],
-              )),
-          gapHeight(sp64),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MainButton(
-                title: 'Đăng nhập',
-                event: () {
-                  if (key.currentState!.validate()) {
-                    _handleLogin();
-                  }
-                },
-              ),
-              MainButton(
-                title: 'Đăng ký',
-                event: () {
-                  if (key.currentState!.validate()) {
-
-                  }
-                },
-              )
-            ],
-          )
-        ],
+      body: Container(
+        padding: const EdgeInsets.all(sp16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Form(
+                key: key,
+                child: Column(
+                  children: [
+                    AppInput(
+                      hintText: 'Email',
+                      controller: emailController,
+                      label: 'Nhập email',
+                      validate: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Vui lòng nhập email';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        loginController.email = value;
+                      },
+                    ),
+                    gapHeight(sp16),
+                    AppInput(
+                      label: 'Nhập mật khẩu',
+                      hintText: 'Password',
+                      onChanged: (value) {
+                        loginController.password = value;
+                      },
+                      isPassword: true,
+                      validate: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Vui lòng nhập mật khẩu';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                )),
+            gapHeight(sp64),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MainButton(
+                  title: 'Đăng nhập',
+                  event: () {
+                    if (key.currentState!.validate()) {
+                      _handleLogin();
+                    }
+                  },
+                ),
+                MainButton(
+                  title: 'Đăng ký',
+                  event: () {
+                    _handleRegister();
+                  },
+                )
+              ],
+            )
+          ],
+        ),
       ),
       resizeToAvoidBottomInset: false,
     );
@@ -85,9 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     final canLogin = await loginController.login();
     if (canLogin) {
-
-    }
-    else {
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: red_1,
@@ -95,5 +100,17 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     }
+  }
+
+  void _handleRegister() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const RegisterScreen(),
+      ),
+    ).then((value) {
+      if (value != null && value['success']) {
+        emailController.text = value['email'];
+      }
+    });
   }
 }
