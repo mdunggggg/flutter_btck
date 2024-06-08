@@ -11,6 +11,7 @@ class StaffEntity{
   final String avatar;
 
   StaffEntity({
+    this.id,
     required this.name,
     required this.email,
     required this.dateOfBirth,

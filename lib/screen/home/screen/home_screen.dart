@@ -1,4 +1,5 @@
 import 'package:bai_tap_cuoi_ky/data/local/database/app_database.dart';
+import 'package:bai_tap_cuoi_ky/screen/create_staff/screen/create_staff_screen.dart';
 import 'package:bai_tap_cuoi_ky/screen/home/screen/local_database_view.dart';
 import 'package:flutter/material.dart';
 
@@ -39,17 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            AppDatabase.getInstance().staffDao.insertStaff(
-                StaffEntity(
-                  name: 'Nguyen Van A',
-                  email: 'abcd@gmail.com',
-                  dateOfBirth: '1999-01-01',
-                  avatar: '',
-                )
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const CreateStaffScreen(),
+              ),
             );
           },
           child: const Icon(Icons.add),
-        )
+        ),
       ),
     );
   }

@@ -34,8 +34,14 @@ class _LocalDatabaseViewState extends State<LocalDatabaseView> {
               itemCount: staffs.length,
               itemBuilder: (context, index) {
                 final staff = staffs[index];
-                return StaffCardView(
-                  staff: staff,
+                return Dismissible(
+                  key: Key(staff.id.toString()),
+                  onDismissed: (direction) {
+                    print('Dismissed at ${staff.id}');
+                  },
+                  child: StaffCardView(
+                    staff: staff,
+                  ),
                 );
               },
             ),
