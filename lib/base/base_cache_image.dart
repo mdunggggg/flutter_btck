@@ -1,3 +1,4 @@
+import 'package:bai_tap_cuoi_ky/base/loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class BaseCacheImage extends StatelessWidget {
           ),
         ),
       ),
-      placeholder: (context, url) =>  Container(),
+      placeholder: (context, url) =>  const BaseLoading(),
       errorWidget: (context, url, error) =>
           errorWidget ??
           Image.asset(
