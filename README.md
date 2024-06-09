@@ -17,7 +17,9 @@
 </table>
 
 # Mô hình sử dụng: MVC
-
+    - Model: Là nơi chứa dữ liệu, thực hiện các thao tác CRUD với dữ liệu.
+    - View: Là nơi hiển thị dữ liệu, tương tác với người dùng.
+    - Controller: Là nơi điều khiển luồng dữ liệu giữa Model và View.
 ## State Management:
     - SetState: Sử dụng cho các trạng thái đơn giản hoặc cần cập nhật trực tiếp trên UI.
     - ValueNotifier: Sử dụng để theo dõi thay đổi trong giá trị và thông báo cho các widget khác về những thay đổi này
