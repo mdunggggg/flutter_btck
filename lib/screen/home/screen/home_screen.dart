@@ -1,12 +1,13 @@
-import 'package:bai_tap_cuoi_ky/data/local/database/app_database.dart';
+import 'package:bai_tap_cuoi_ky/constants/colors.dart';
 import 'package:bai_tap_cuoi_ky/screen/create_staff/screen/create_staff_screen.dart';
 import 'package:bai_tap_cuoi_ky/screen/home/screen/local_database_view.dart';
 import 'package:bai_tap_cuoi_ky/screen/login_screen/screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/staff_entity.dart';
+import '../../../data/remote/firestore_service.dart';
 import '../controller/local_database_controller.dart';
+import 'firebase_storage_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final localDatabaseController = LocalDatabaseController();
+  final fireStoreService = FirestoreService();
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text('Home Screen'),
+          backgroundColor: whiteColor,
           actions: [
             IconButton(
               onPressed: () {
                 _handleLogout();
               },
               icon: const Icon(Icons.logout_outlined),
-            )
+            ),
           ],
           bottom: const TabBar(
             tabs: [
@@ -49,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Center(
-              child: Text('Tab 2'),
+              child: FirebaseStorageView(
+                fireStoreService: fireStoreService,
+              ),
             ),
           ],
         ),
@@ -58,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
             await Navigator.of(context)
                 .push(
                   MaterialPageRoute(
-                    builder: (context) => const CreateStaffScreen(),
+                    builder: (context) => const CreateStaffScreen(
+
+                    ),
                   ),
                 )
                 .then((value) => setState(() {}));

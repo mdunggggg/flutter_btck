@@ -190,7 +190,7 @@ Widget AppInputSupport({
             style: labelStyle ?? p5.copyWith(color: blackColor),
             children: [
               if (required)
-                TextSpan(text: ' *', style: p5.copyWith(color: red_1))
+                TextSpan(text: ' *', style: p5.copyWith(color: red_1)),
             ],
           ),
         ),
@@ -201,7 +201,7 @@ Widget AppInputSupport({
           borderRadius: BorderRadius.circular(radius ?? sp8),
           boxShadow: boxShadow ??
               [
-                 BoxShadow(
+                 const BoxShadow(
                   color: Colors.transparent,
                   blurRadius: sp2,
                   offset: Offset(0, 1),

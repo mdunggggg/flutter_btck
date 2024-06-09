@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `StaffEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `email` TEXT NOT NULL, `dateOfBirth` TEXT NOT NULL, `avatar` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `StaffEntity` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `email` TEXT NOT NULL, `dateOfBirth` TEXT NOT NULL, `avatar` TEXT NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -164,7 +164,7 @@ class _$StaffDao extends StaffDao {
   Future<List<StaffEntity>> findAllStaffs() async {
     return _queryAdapter.queryList('SELECT * FROM StaffEntity',
         mapper: (Map<String, Object?> row) => StaffEntity(
-            id: row['id'] as int?,
+            id: row['id'] as String,
             name: row['name'] as String,
             email: row['email'] as String,
             dateOfBirth: row['dateOfBirth'] as String,
@@ -175,7 +175,7 @@ class _$StaffDao extends StaffDao {
   Future<StaffEntity?> findStaffById(int id) async {
     return _queryAdapter.query('SELECT * FROM StaffEntity WHERE id = ?1',
         mapper: (Map<String, Object?> row) => StaffEntity(
-            id: row['id'] as int?,
+            id: row['id'] as String,
             name: row['name'] as String,
             email: row['email'] as String,
             dateOfBirth: row['dateOfBirth'] as String,

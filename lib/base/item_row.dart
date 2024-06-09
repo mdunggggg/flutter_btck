@@ -27,12 +27,9 @@ class RowItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
-          flex: 1,
-          child: Text(
-            title,
-            style: titleStyle ?? p6.copyWith(color: titleColor ?? blackColor),
-          ),
+        Text(
+          title,
+          style: titleStyle ?? p6.copyWith(color: titleColor ?? blackColor),
         ),
         Expanded(
           flex: 1,

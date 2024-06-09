@@ -90,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   _handleRegister();
                 }
               },
-            )
+            ),
           ],
         ),
       ),

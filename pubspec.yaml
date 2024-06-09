@@ -44,7 +44,10 @@ dependencies:
     sdk: flutter
   intl: any
   loading_animation_widget: ^1.2.1
+  cloud_firestore: ^5.0.0
+  uuid: ^4.4.0
 
+  sqflite: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
