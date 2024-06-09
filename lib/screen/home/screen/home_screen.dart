@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Home Screen'),
+          title: const Text('Trang chủ'),
           backgroundColor: whiteColor,
           actions: [
             IconButton(

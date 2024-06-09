@@ -145,27 +145,33 @@ class _CreateStaffScreenState extends State<CreateStaffScreen> {
                 },
               ),
               gapHeight(sp16),
-              MainButton(
-                largeButton: true,
-                title: widget.staff != null ? 'Cập nhật' : 'Tạo',
-                event: () {
-                  if (key.currentState!.validate()) {
-                    if(!createStaffController.isLocal && !createStaffController.isRemote){
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: red_1,
-                          content: Text('Vui lòng chọn loại lưu trữ'),
-                        ),
-                      );
-                      return;
-                    }
-                    if (widget.staff != null) {
-                      _handleUpdateStaff();
-                    } else {
-                      _handleCreateStaff();
-                    }
-                  }
-                },
+              Row(
+                children: [
+                  Expanded(
+                    child: MainButton(
+                      largeButton: true,
+                      title: widget.staff != null ? 'Cập nhật' : 'Tạo',
+                      event: () {
+                        if (key.currentState!.validate()) {
+                          if(!createStaffController.isLocal && !createStaffController.isRemote){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: red_1,
+                                content: Text('Vui lòng chọn loại lưu trữ'),
+                              ),
+                            );
+                            return;
+                          }
+                          if (widget.staff != null) {
+                            _handleUpdateStaff();
+                          } else {
+                            _handleCreateStaff();
+                          }
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

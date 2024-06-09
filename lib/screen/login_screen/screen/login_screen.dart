@@ -86,19 +86,24 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                MainButton(
-                  title: 'Đăng nhập',
-                  event: () {
-                    if (key.currentState!.validate()) {
-                      _handleLogin();
-                    }
-                  },
+                Expanded(
+                  child: MainButton(
+                    title: 'Đăng nhập',
+                    event: () {
+                      if (key.currentState!.validate()) {
+                        _handleLogin();
+                      }
+                    },
+                  ),
                 ),
-                MainButton(
-                  title: 'Đăng ký',
-                  event: () {
-                    _handleRegister();
-                  },
+                gapWidth(sp12),
+                Expanded(
+                  child: ExtraButton(
+                    title: 'Đăng ký',
+                    event: () {
+                      _handleRegister();
+                    },
+                  ),
                 ),
               ],
             ),

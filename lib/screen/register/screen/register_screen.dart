@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: Container(
         padding: const EdgeInsets.all(sp16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Lottie.asset(
               'assets/jsons/welcome.json',
@@ -82,14 +82,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ],
               ),
             ),
-            gapHeight(sp64),
-            MainButton(
-              title: 'Đăng ký',
-              event: () {
-                if (key.currentState!.validate()) {
-                  _handleRegister();
-                }
-              },
+            Row(
+              children: [
+                Expanded(
+                  child: MainButton(
+                    title: 'Đăng ký',
+                    event: () {
+                      if (key.currentState!.validate()) {
+                        _handleRegister();
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
