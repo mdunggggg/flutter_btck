@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final key = GlobalKey<FormState>();
   final loginController = LoginController();
   final emailController = TextEditingController();
-  var isLoading = ValueNotifier(false);
+  var isLoading = ValueNotifier(false); // check loading khi login
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +34,11 @@ class _LoginScreenState extends State<LoginScreen> {
             Lottie.asset(
               'assets/jsons/welcome.json',
             ),
-            Form(
+            Form( // validate email và password
               key: key,
               child: Stack(
                 children: [
-                  ValueListenableBuilder(
+                  ValueListenableBuilder( // Khi login thì hiện loading
                     valueListenable: isLoading,
                     builder: (context, value, child) {
                       return value
@@ -116,7 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _handleLogin() async {
     isLoading.value = true;
-    await Future.delayed(const Duration(seconds: 2));
     final canLogin = await loginController.login();
     if (canLogin) {
       Navigator.of(context).pushReplacement(

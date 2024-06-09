@@ -22,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
+    return DefaultTabController( // Tạo TabBar
+      length: 2, // Số lượng tab
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -37,14 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.logout_outlined),
             ),
           ],
-          bottom: const TabBar(
+          bottom: const TabBar( // Các tab
             tabs: [
               Tab(text: 'Local Database'),
               Tab(text: 'Firebase Storage'),
             ],
           ),
         ),
-        body: TabBarView(
+        body: TabBarView( // Nội dung của các tab
           children: [
             Center(
               child: LocalDatabaseView(
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleLogout() {
-    showDialog(
+    showDialog( // Hiển thị dialog xác nhận đăng xuất
       context: context,
       builder: (
         BuildContext context,

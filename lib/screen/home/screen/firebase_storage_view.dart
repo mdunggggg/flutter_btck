@@ -25,12 +25,12 @@ class _FirebaseStorageViewState extends State<FirebaseStorageView> {
       decoration: const BoxDecoration(
         color: whiteColor,
       ),
-      child: RefreshIndicator(
+      child: RefreshIndicator( // Hiển thị hiệu ứng khi kéo xuống
         onRefresh: () async {
-          setState(() {});
+          setState(() {}); // cập nhật lại trạng thái khi kéo xuống
         },
-        child: StreamBuilder(
-          stream: widget.fireStoreService.getAllStaffs(),
+        child: StreamBuilder( // lấy dữ liệu từ firebase
+          stream: widget.fireStoreService.getAllStaffs(), // lấy dữ liệu từ firebase
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -42,6 +42,7 @@ class _FirebaseStorageViewState extends State<FirebaseStorageView> {
                 child: Text('Error'),
               );
             }
+            // dữ liệu trả về từ firebase
             final data = snapshot.data?.docs;
             if(data == null || data.isEmpty) {
               return const EmptyContainer();
@@ -53,11 +54,11 @@ class _FirebaseStorageViewState extends State<FirebaseStorageView> {
                   final staff = StaffEntity.fromJson(
                     data[index].data() as Map<String, dynamic>,
                   );
-                  return Dismissible(
+                  return Dismissible( // Taạo hiệu ứng khi vuốt sang trái dể xóa
                     key: Key(staff.id.toString()),
-                    direction: DismissDirection.endToStart,
+                    direction: DismissDirection.endToStart, // vuốt từ phải sang trái
                     dismissThresholds: const {DismissDirection.endToStart: 0.2},
-                    onDismissed: (direction) async {
+                    onDismissed: (direction) async { // xử lý khi vuốt
                       _handleDelete(staff);
                     },
                     child: InkWell(
@@ -90,7 +91,7 @@ class _FirebaseStorageViewState extends State<FirebaseStorageView> {
   }
 
   _handleDelete(StaffEntity staff) {
-    return showDialog(
+    return showDialog( // Hiển thị dialog xác nhận xóa
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Xác nhận'),

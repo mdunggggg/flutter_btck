@@ -32,7 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Lottie.asset(
               'assets/jsons/welcome.json',
             ),
-            Form(
+            Form( // validate email và password
               key: key,
               child: Column(
                 children: [
@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: MainButton(
                     title: 'Đăng ký',
                     event: () {
-                      if (key.currentState!.validate()) {
+                      if (key.currentState!.validate()) { // kiểm tra validate
                         _handleRegister();
                       }
                     },

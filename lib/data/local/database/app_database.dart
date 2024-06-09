@@ -9,14 +9,14 @@ part 'app_database.g.dart';
 
 @Database(version: 1, entities: [StaffEntity])
 abstract class AppDatabase extends FloorDatabase {
-  static AppDatabase? _instance;
+  static AppDatabase? _instance; // Khởi tạo instance của AppDatabase
 
   static AppDatabase getInstance() {
     return _instance!;
   }
 
   StaffDao get staffDao;
-  static Future<void> initDatabase() async {
+  static Future<void> initDatabase() async { // Khởi tạo database
     _instance =
     await $FloorAppDatabase.databaseBuilder('app_database.db').build();
   }

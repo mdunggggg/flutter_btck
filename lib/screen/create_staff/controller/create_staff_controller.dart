@@ -7,9 +7,9 @@ import 'package:uuid/uuid.dart';
 import '../../../models/staff_entity.dart';
 
 class CreateStaffController {
-  final StaffDao staffDao = AppDatabase.getInstance().staffDao;
-  final FirestoreService firestoreService = FirestoreService();
-  final uuid = const Uuid();
+  final StaffDao staffDao = AppDatabase.getInstance().staffDao; // Lấy ra staffDao từ AppDatabase
+  final FirestoreService firestoreService = FirestoreService(); // Lấy ra firestoreService từ FirestoreService
+  final uuid = const Uuid(); // Tạo id ngẫu nhiên
 
   late String _name = '';
 

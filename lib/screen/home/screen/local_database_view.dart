@@ -26,16 +26,17 @@ class _LocalDatabaseViewState extends State<LocalDatabaseView> {
       decoration: const BoxDecoration(
         color: whiteColor,
       ),
-      child: RefreshIndicator(
+      child: RefreshIndicator( // Hiển thị hiệu ứng khi kéo xuống
         onRefresh: () async {
-          setState(() {});
+          setState(() {}); // cập nhật lại trạng thái khi kéo xuống
         },
-        child: FutureBuilder(
-          future: widget.localDatabaseController.findAllStaffs(),
+        child: FutureBuilder( // lấy dữ liệu từ local database
+          future: widget.localDatabaseController.findAllStaffs(), // lấy dữ liệu từ local database
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
+            // dữ liệu trả về từ local database
             final staffs = snapshot.data as List<StaffEntity>;
             if(staffs.isEmpty) return const EmptyContainer();
             return Container(
@@ -44,11 +45,11 @@ class _LocalDatabaseViewState extends State<LocalDatabaseView> {
                 itemCount: staffs.length,
                 itemBuilder: (context, index) {
                   final staff = staffs[index];
-                  return Dismissible(
+                  return Dismissible( // Taạo hiệu ứng khi vuốt sang phải dể xóa
                     key: Key(staff.id.toString()),
-                    direction: DismissDirection.startToEnd,
+                    direction: DismissDirection.startToEnd, // vuốt từ trái sang phải
                     dismissThresholds: const {DismissDirection.endToStart: 0.2},
-                    onDismissed: (direction) async {
+                    onDismissed: (direction) async { // xử lý khi vuốt
                       _handleDelete(staff).then(
                         (value) => setState(() {}),
                       );
@@ -82,7 +83,7 @@ class _LocalDatabaseViewState extends State<LocalDatabaseView> {
   }
 
   Future<void> _handleDelete(StaffEntity staff) async {
-    return showDialog(
+    return showDialog( // Hiển thị dialog xác nhận xóa
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Xác nhận'),

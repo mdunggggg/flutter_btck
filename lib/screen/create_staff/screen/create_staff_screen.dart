@@ -11,7 +11,10 @@ import '../controller/create_staff_controller.dart';
 class CreateStaffScreen extends StatefulWidget {
   const CreateStaffScreen({this.isLocal, this.staff, super.key});
 
+  // Neu staff != null thi la update, nguoc lai la create
   final StaffEntity? staff;
+
+  // Kiem tra update o local hay remote
   final bool? isLocal;
 
 
@@ -26,6 +29,7 @@ class _CreateStaffScreenState extends State<CreateStaffScreen> {
 
   @override
   void initState() {
+    // staff != null : truyen du lieu vao controller de tu dong fill cac truong trong form
     if (widget.staff != null) {
       createStaffController.staffEntity = widget.staff;
       createStaffController.onNameChanged(widget.staff!.name);

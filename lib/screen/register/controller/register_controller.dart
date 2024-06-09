@@ -11,6 +11,7 @@ class RegisterController {
 
   Future<bool> register() async {
     try {
+      // Đăng ký tài khoản
       final userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -22,6 +23,7 @@ class RegisterController {
     }
   }
 
+  // Thêm thông tin người dùng vào Firestore (nếu chưa tồn tại)
   void _addUserToFirestore(UserCredential user) {
     if (user.user != null) {
       firebaseFirestore.collection('users').doc(user.user!.uid).set({

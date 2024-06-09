@@ -10,8 +10,8 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppDatabase.initDatabase();
-  await Firebase.initializeApp(
+  await AppDatabase.initDatabase(); // Khởi tạo database
+  await Firebase.initializeApp( // Khởi tạo Firebase
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: StreamBuilder(
+      home: StreamBuilder(  // Kiểm tra trạng thái đăng nhập của người dùng
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,17 +33,20 @@ class MyApp extends StatelessWidget {
               ),
             );
           }
-          if (snapshot.hasData ) {
+          if (snapshot.hasData ) { // Nếu đã đăng nhập thì chuyển hướng đến màn hình HomeScreen
             return const HomeScreen();
           }
+          // Nếu chưa đăng nhập thì chuyển hướng đến màn hình LoginScreen
           return const LoginScreen();
         },
       ),
+      // Cấu hình ngôn ngữ cho ứng dụng
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      // Cấu hình ngôn ngữ mặc định cho ứng dụng
       supportedLocales: const [
         Locale('en'), // English
         Locale('vi'), // Spanish

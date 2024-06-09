@@ -9,6 +9,7 @@ class LoginController {
   String email = '';
   String password = '';
 
+  // Đăng nhập
   Future<bool> login() async {
     try {
       final user = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
@@ -20,6 +21,8 @@ class LoginController {
     }
   }
 
+
+  // Thêm thông tin người dùng vào Firestore (nếu chưa tồn tại)
   void _handleFirebase(UserCredential user) {
     if(user.user != null) {
       firebaseFirestore.collection('users').doc(user.user!.uid).get().then((value) {

@@ -2,7 +2,7 @@ import '../../../data/local/database/app_database.dart';
 import '../../../models/staff_entity.dart';
 
 class LocalDatabaseController {
-  final staffDao = AppDatabase.getInstance().staffDao;
+  final staffDao = AppDatabase.getInstance().staffDao; // Lấy ra staffDao từ AppDatabase
 
   Future<void> insertStaff(StaffEntity staff) async {
     await staffDao.insertStaff(staff);
