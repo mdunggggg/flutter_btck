@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return value
                           ? const BaseLoading()
                           : const SizedBox.shrink();
-                    }
+                    },
                   ),
                   Column(
                     children: [
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -99,9 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   event: () {
                     _handleRegister();
                   },
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

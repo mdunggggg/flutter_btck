@@ -59,6 +59,7 @@ class ExtraButton extends StatelessWidget {
     this.borderColor,
     this.icon,
     this.backgroundColor,
+    this.textColor,
   });
 
   final String? title;
@@ -67,6 +68,7 @@ class ExtraButton extends StatelessWidget {
   final Color? borderColor;
   final Widget? icon;
   final Color? backgroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +94,7 @@ class ExtraButton extends StatelessWidget {
           if (title != null)
             Text(
               title ?? '',
-              style: (largeButton ? h6 : p5).copyWith(color: blackColor),
+              style: (largeButton ? h6 : p5).copyWith(color: textColor ?? blackColor),
             ),
         ],
       ),
